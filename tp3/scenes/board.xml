@@ -1,0 +1,2404 @@
+<sxs>
+    <scene root="demoRoot" axis_length="5" />
+
+    <views default="defaultCamera">
+        <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+            <from x="15" y="11" z="15" />
+            <to x="0" y="0" z="0" />
+        </perspective>
+    </views>
+
+    <ambient>
+        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <background r="0.0" g="0.0" b="0.0" a="1.0" />
+    </ambient>
+
+    <lights>
+        <omni id="demoLight" enabled="1">
+            <location x="9.8" y="20" z="10" w="1.0" />
+            <ambient r="1" g="1" b="1" a="1.0" />
+            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>7 </lights>
+
+    <textures>
+        <texture id="woodTexture" file="scenes/images/pieces_wood.jpg" />
+        <texture id="blackPieceTexture" file="scenes/images/dark_wood.jpg" />
+        <texture id="blackPieceKingTexture" file="scenes/images/dark_wood_king.jpg" />
+        <texture id="whitePieceTexture" file="scenes/images/white_wood.jpg" />
+        <texture id="whitePieceKingTexture" file="scenes/images/white_wood_king.jpg" />
+        <texture id="blackPositionTexture" file="scenes/images/black_wood.jpg" />
+        <texture id="whitePositionTexture" file="scenes/images/white_wood.jpg" />
+        <texture id="possibleMoveTexture" file="scenes/images/possible_move.jpg" />
+        <texture id="selectedPieceTexture" file="scenes/images/selected_piece.jpg" />
+    </textures>
+
+    <materials>
+        <material id="demoMaterial" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1.0" g="0.0" b="0.0" a="1.0" />
+            <diffuse r="0.6" g="0.0" b="0.0" a="1.0" />
+            <specular r="0.6" g="0.0" b="0.0" a="1.0" />
+        </material>
+        <material id="neutral" shininess="2">
+            <emission r="0" g="0" b="0" a="1" />
+            <ambient r="0.2" g="0.2" b="0.2" a="1" />
+            <diffuse r="0.7" g="0.7" b="0.7" a="1" />
+            <specular r="0.3" g="0.3" b="0.3" a="1" />
+        </material>
+        <material id="darkBrown" shininess="2">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+            <diffuse r="0.6" g="0.5" b="0.45" a="1.0" />
+            <specular r="0.1" g="0.07" b="0.06" a="1.0" />
+        </material>
+        <material id="timerDisplayOled" shininess="1">
+            <emission r="0" g="0" b="0" a="1.0" />
+            <ambient r="0" g="0" b="0" a="1.0" />
+            <diffuse r="0.0" g="0.0" b="0.0" a="1.0" />
+            <specular r="0.0" g="0.0" b="0.0" a="1.0" />
+        </material>
+    </materials>
+
+    <transformations>
+        <transformation id="demoTransform">
+            <scale x="5" y="1" z="5" />
+            <rotate axis="x" angle="-45" />
+            <rotate axis="z" angle="-45" />
+        </transformation>
+    </transformations>
+
+    <primitives>
+        <primitive id="halfPiece">
+            <patch degree_u="3" degree_v="2" parts_u="10" parts_v="10">
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="-3" y="1" z="0" />
+                <controlpoint x="-2" y="2" z="0" />
+
+                <controlpoint x="-2" y="0" z="2.7" />
+                <controlpoint x="-3" y="1" z="4" />
+                <controlpoint x="-2" y="2" z="2.7" />
+
+                <controlpoint x="2" y="0" z="2.7" />
+                <controlpoint x="3" y="1" z="4" />
+                <controlpoint x="2" y="2" z="2.7" />
+
+                <controlpoint x="2" y="0" z="0" />
+                <controlpoint x="3" y="1" z="0" />
+                <controlpoint x="2" y="2" z="0" />
+            </patch>
+        </primitive>
+
+        <primitive id="piecesFace">
+            <patch degree_u="2" degree_v="3" parts_u="10" parts_v="10">
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="-2" y="0" z="-2.7" />
+                <controlpoint x="2" y="0" z="-2.7" />
+                <controlpoint x="2" y="0" z="0" />
+
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="0" y="-0.5" z="0" />
+                <controlpoint x="0" y="-0.5" z="0" />
+                <controlpoint x="2" y="0" z="0" />
+
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="-2" y="0" z="2.7" />
+                <controlpoint x="2" y="0" z="2.7" />
+                <controlpoint x="2" y="0" z="0" />
+            </patch>
+        </primitive>
+
+        <primitive id="boardCirclePatch">
+            <patch degree_u="1" degree_v="3" parts_u="10" parts_v="10">
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="-2" y="0" z="-2.7" />
+                <controlpoint x="2" y="0" z="-2.7" />
+                <controlpoint x="2" y="0" z="0" />
+
+                <controlpoint x="-2" y="0" z="0" />
+                <controlpoint x="-2" y="0" z="2.7" />
+                <controlpoint x="2" y="0" z="2.7" />
+                <controlpoint x="2" y="0" z="0" />
+            </patch>
+        </primitive>
+
+        <primitive id="rectangle">
+            <patch degree_u="1" degree_v="1" parts_u="10" parts_v="10">
+                <controlpoint x="1" y="1" z="0" />
+                <controlpoint x="1" y="-1" z="0" />
+                <controlpoint x="-1" y="1" z="0" />
+                <controlpoint x="-1" y="-1" z="0" />
+            </patch>
+        </primitive>
+    </primitives>
+
+    <animations>
+        <keyframeanim id="demoKeyframe">
+            <keyframe instant="2">
+                <translation x="10" y="10" z="10" />
+                <rotation axis="z" angle="0" />
+                <rotation axis="y" angle="0" />
+                <rotation axis="x" angle="0" />
+                <scale sx="1" sy="1" sz="1" />
+            </keyframe>
+        </keyframeanim>
+    </animations>
+
+    <components>
+        <component id="demoRoot">
+            <transformation></transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="boardComponents" />
+            </children>
+        </component>
+
+        <component id="boardComponents">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="board" />
+                <componentref id="timer" />
+                <componentref id="supportBlockPlayer1" />
+                <componentref id="supportBlockPlayer2" />
+            </children>
+        </component>
+
+        <component id="board">
+            <transformation></transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="2" length_t="2" />
+            <children>
+                <componentref id="faces" />
+                <componentref id="positions" />
+                <componentref id="pieces" />
+            </children>
+        </component>
+
+        <component id="startButton" pickable="1">
+            <transformation>
+                <translate x="0.6" y="1" z="0.9" />
+                <scale x="0.14" y="0.4" z="0.03" />
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="startButtonTop" />
+            </children>
+        </component>
+
+        <component id="undoButton" visible="0" pickable="1">
+            <transformation>
+                <translate x="0.3" y="1" z="0.9" />
+                <scale x="0.14" y="0.4" z="0.03" />
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="undoButtonTop" />
+            </children>
+        </component>
+
+        <component id="movieButton" visible="0" pickable="1">
+            <transformation>
+                <translate x="0" y="1" z="0.9" />
+                <scale x="0.14" y="0.4" z="0.03" />
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="movieButtonTop" />
+            </children>
+        </component>
+
+        <component id="switchSceneButton" visible="1" pickable="1">
+            <transformation>
+                <translate x="-0.3" y="1" z="0.9" />
+                <scale x="0.14" y="0.4" z="0.03" />
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="switchSceneButtonTop" />
+            </children>
+        </component>
+
+        <component id="switchCameraButton" visible="0" pickable="1">
+            <transformation>
+                <translate x="-0.6" y="1" z="0.9" />
+                <scale x="0.14" y="0.4" z="0.03" />
+            </transformation>
+            <materials>
+                <material id="darkBrown" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="switchCameraButtonTop" />
+            </children>
+        </component>
+
+        <component id="startButtonTop">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="Start" scale_y="2.5" scale_x="0.5" x_off="-0.2" />
+        </component>
+
+        <component id="movieButtonTop">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="Watch" scale_y="2.5" scale_x="0.5" x_off="-0.2" />
+        </component>
+
+        <component id="undoButtonTop">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="Undo" scale_y="2.5" scale_x="0.5" x_off="-0.2" />
+        </component>
+
+        <component id="switchSceneButtonTop">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="Travel" scale_y="2.5" scale_x="0.5" x_off="-0.2" />
+        </component>
+
+        <component id="switchCameraButtonTop">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="Camera" scale_y="2.5" scale_x="0.5" x_off="-0.2" />
+        </component>
+
+        <component id="faces">
+            <transformation>
+                <scale x="5" y="0.5" z="5" />
+                <translate x="0" y="1" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="cube_face1" />
+                <componentref id="cube_face2" />
+                <componentref id="cube_face3" />
+                <componentref id="cube_face4" />
+                <componentref id="cube_face5" />
+                <componentref id="borders" />
+                <componentref id="blackPlayerButtons" />
+                <componentref id="whitePlayerButtons" />
+            </children>
+        </component>
+
+        <component id="blackPlayerButtons">
+            <transformation></transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="startButton" />
+                <componentref id="movieButton" />
+                <componentref id="undoButton" />
+                <componentref id="switchSceneButton" />
+                <componentref id="switchCameraButton" />
+            </children>
+        </component>
+
+        <component id="whitePlayerButtons" visible="0">
+            <transformation>
+                <rotate axis="y" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="startButton" />
+                <componentref id="movieButton" />
+                <componentref id="undoButton" />
+                <componentref id="switchSceneButton" />
+                <componentref id="switchCameraButton" />
+            </children>
+        </component>
+
+        <component id="cube_face1">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="cube_face2">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+                <rotate axis="y" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+
+        </component>
+
+        <component id="cube_face3">
+            <transformation>
+                <translate x="1" y="0" z="0" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="cube_face4">
+            <transformation>
+                <translate x="-1" y="0" z="0" />
+                <rotate axis="y" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="cube_face5">
+            <transformation>
+                <translate x="0" y="-1" z="0" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+
+        </component>
+
+        <component id="cube_face6">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="borders">
+            <transformation>
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="bigBorder1" />
+                <componentref id="bigBorder2" />
+                <componentref id="smallBorder1" />
+                <componentref id="smallBorder2" />
+            </children>
+        </component>
+
+        <component id="bigBorder1">
+            <transformation>
+                <scale x="0.1" y="1" z="1" />
+                <translate x="9" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="bigBorder2">
+            <transformation>
+                <scale x="0.1" y="1" z="1" />
+                <translate x="-9" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="smallBorder1">
+            <transformation>
+                <scale x="0.8" y="0.1" z="1" />
+                <translate x="0" y="9" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="smallBorder2">
+            <transformation>
+                <scale x="0.8" y="0.1" z="1" />
+                <translate x="0" y="-9" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positions">
+            <transformation>
+                <rotate axis="x" angle="-90" />
+                <scale x="0.5" y="0.5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="positionA0" />
+                <componentref id="positionB0" />
+                <componentref id="positionC0" />
+                <componentref id="positionD0" />
+                <componentref id="positionE0" />
+                <componentref id="positionF0" />
+                <componentref id="positionG0" />
+                <componentref id="positionH0" />
+
+                <componentref id="positionA1" />
+                <componentref id="positionB1" />
+                <componentref id="positionC1" />
+                <componentref id="positionD1" />
+                <componentref id="positionE1" />
+                <componentref id="positionF1" />
+                <componentref id="positionG1" />
+                <componentref id="positionH1" />
+
+                <componentref id="positionA2" />
+                <componentref id="positionB2" />
+                <componentref id="positionC2" />
+                <componentref id="positionD2" />
+                <componentref id="positionE2" />
+                <componentref id="positionF2" />
+                <componentref id="positionG2" />
+                <componentref id="positionH2" />
+
+                <componentref id="positionA3" />
+                <componentref id="positionB3" />
+                <componentref id="positionC3" />
+                <componentref id="positionD3" />
+                <componentref id="positionE3" />
+                <componentref id="positionF3" />
+                <componentref id="positionG3" />
+                <componentref id="positionH3" />
+
+                <componentref id="positionA4" />
+                <componentref id="positionB4" />
+                <componentref id="positionC4" />
+                <componentref id="positionD4" />
+                <componentref id="positionE4" />
+                <componentref id="positionF4" />
+                <componentref id="positionG4" />
+                <componentref id="positionH4" />
+
+                <componentref id="positionA5" />
+                <componentref id="positionB5" />
+                <componentref id="positionC5" />
+                <componentref id="positionD5" />
+                <componentref id="positionE5" />
+                <componentref id="positionF5" />
+                <componentref id="positionG5" />
+                <componentref id="positionH5" />
+
+                <componentref id="positionA6" />
+                <componentref id="positionB6" />
+                <componentref id="positionC6" />
+                <componentref id="positionD6" />
+                <componentref id="positionE6" />
+                <componentref id="positionF6" />
+                <componentref id="positionG6" />
+                <componentref id="positionH6" />
+
+                <componentref id="positionA7" />
+                <componentref id="positionB7" />
+                <componentref id="positionC7" />
+                <componentref id="positionD7" />
+                <componentref id="positionE7" />
+                <componentref id="positionF7" />
+                <componentref id="positionG7" />
+                <componentref id="positionH7" />
+            </children>
+        </component>
+
+        <component id="positionA0" pickable="1">
+            <transformation>
+                <translate x="-7" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB0" pickable="1">
+            <transformation>
+                <translate x="-5" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        <component id="positionC0" pickable="1">
+            <transformation>
+                <translate x="-3" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD0" pickable="1">
+            <transformation>
+                <translate x="-1" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE0" pickable="1">
+            <transformation>
+                <translate x="1" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF0" pickable="1">
+            <transformation>
+                <translate x="3" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG0" pickable="1">
+            <transformation>
+                <translate x="5" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH0" pickable="1">
+            <transformation>
+                <translate x="7" y="-7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA1" pickable="1">
+            <transformation>
+                <translate x="-7" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB1" pickable="1">
+            <transformation>
+                <translate x="-5" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC1" pickable="1">
+            <transformation>
+                <translate x="-3" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD1" pickable="1">
+            <transformation>
+                <translate x="-1" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE1" pickable="1">
+            <transformation>
+                <translate x="1" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF1" pickable="1">
+            <transformation>
+                <translate x="3" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG1" pickable="1">
+            <transformation>
+                <translate x="5" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH1" pickable="1">
+            <transformation>
+                <translate x="7" y="-5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA2" pickable="1">
+            <transformation>
+                <translate x="-7" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB2" pickable="1">
+            <transformation>
+                <translate x="-5" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC2" pickable="1">
+            <transformation>
+                <translate x="-3" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD2" pickable="1">
+            <transformation>
+                <translate x="-1" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE2" pickable="1">
+            <transformation>
+                <translate x="1" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF2" pickable="1">
+            <transformation>
+                <translate x="3" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG2" pickable="1">
+            <transformation>
+                <translate x="5" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH2" pickable="1">
+            <transformation>
+                <translate x="7" y="-3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA3" pickable="1">
+            <transformation>
+                <translate x="-7" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB3" pickable="1">
+            <transformation>
+                <translate x="-5" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC3" pickable="1">
+            <transformation>
+                <translate x="-3" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD3" pickable="1">
+            <transformation>
+                <translate x="-1" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE3" pickable="1">
+            <transformation>
+                <translate x="1" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF3" pickable="1">
+            <transformation>
+                <translate x="3" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG3" pickable="1">
+            <transformation>
+                <translate x="5" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH3" pickable="1">
+            <transformation>
+                <translate x="7" y="-1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA4" pickable="1">
+            <transformation>
+                <translate x="-7" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB4" pickable="1">
+            <transformation>
+                <translate x="-5" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC4" pickable="1">
+            <transformation>
+                <translate x="-3" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD4" pickable="1">
+            <transformation>
+                <translate x="-1" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE4" pickable="1">
+            <transformation>
+                <translate x="1" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF4" pickable="1">
+            <transformation>
+                <translate x="3" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG4" pickable="1">
+            <transformation>
+                <translate x="5" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH4" pickable="1">
+            <transformation>
+                <translate x="7" y="1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA5" pickable="1">
+            <transformation>
+                <translate x="-7" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB5" pickable="1">
+            <transformation>
+                <translate x="-5" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC5" pickable="1">
+            <transformation>
+                <translate x="-3" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD5" pickable="1">
+            <transformation>
+                <translate x="-1" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE5" pickable="1">
+            <transformation>
+                <translate x="1" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF5" pickable="1">
+            <transformation>
+                <translate x="3" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG5" pickable="1">
+            <transformation>
+                <translate x="5" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH5" pickable="1">
+            <transformation>
+                <translate x="7" y="3" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA6" pickable="1">
+            <transformation>
+                <translate x="-7" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB6" pickable="1">
+            <transformation>
+                <translate x="-5" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC6" pickable="1">
+            <transformation>
+                <translate x="-3" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD6" pickable="1">
+            <transformation>
+                <translate x="-1" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE6" pickable="1">
+            <transformation>
+                <translate x="1" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF6" pickable="1">
+            <transformation>
+                <translate x="3" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG6" pickable="1">
+            <transformation>
+                <translate x="5" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH6" pickable="1">
+            <transformation>
+                <translate x="7" y="5" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionA7" pickable="1">
+            <transformation>
+                <translate x="-7" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionB7" pickable="1">
+            <transformation>
+                <translate x="-5" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionC7" pickable="1">
+            <transformation>
+                <translate x="-3" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionD7" pickable="1">
+            <transformation>
+                <translate x="-1" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionE7" pickable="1">
+            <transformation>
+                <translate x="1" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionF7" pickable="1">
+            <transformation>
+                <translate x="3" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionG7" pickable="1">
+            <transformation>
+                <translate x="5" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="positionH7" pickable="1">
+            <transformation>
+                <translate x="7" y="7" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPositionTexture" length_s="2" length_t="2" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="pieces">
+            <transformation>
+                <translate x="0.5" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="blackPiece1" />
+                <componentref id="blackPiece2" />
+                <componentref id="blackPiece3" />
+                <componentref id="blackPiece4" />
+                <componentref id="blackPiece5" />
+                <componentref id="blackPiece6" />
+                <componentref id="blackPiece7" />
+                <componentref id="blackPiece8" />
+                <componentref id="blackPiece9" />
+                <componentref id="blackPiece10" />
+                <componentref id="blackPiece11" />
+                <componentref id="blackPiece12" />
+
+                <componentref id="whitePiece1" />
+                <componentref id="whitePiece2" />
+                <componentref id="whitePiece3" />
+                <componentref id="whitePiece4" />
+                <componentref id="whitePiece5" />
+                <componentref id="whitePiece6" />
+                <componentref id="whitePiece7" />
+                <componentref id="whitePiece8" />
+                <componentref id="whitePiece9" />
+                <componentref id="whitePiece10" />
+                <componentref id="whitePiece11" />
+                <componentref id="whitePiece12" />
+            </children>
+        </component>
+
+        <component id="blackPiece1" pickable="1">
+            <transformation>
+                <translate x="-4" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece2" pickable="1">
+            <transformation>
+                <translate x="-2" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece3" pickable="1">
+            <transformation>
+                <translate x="0" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece4" pickable="1">
+            <transformation>
+                <translate x="2" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece5" pickable="1">
+            <transformation>
+                <translate x="-3" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece6" pickable="1">
+            <transformation>
+                <translate x="-1" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece7" pickable="1">
+            <transformation>
+                <translate x="1" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece8" pickable="1">
+            <transformation>
+                <translate x="3" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece9" pickable="1">
+            <transformation>
+                <translate x="-4" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece10" pickable="1">
+            <transformation>
+                <translate x="-2" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece11" pickable="1">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="blackPiece12" pickable="1">
+            <transformation>
+                <translate x="2" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece1" pickable="1">
+            <transformation>
+                <translate x="3" y="0" z="-4" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece2" pickable="1">
+            <transformation>
+                <translate x="1" y="0" z="-4" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece3" pickable="1">
+            <transformation>
+                <translate x="-1" y="0" z="-4" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece4" pickable="1">
+            <transformation>
+                <translate x="-3" y="0" z="-4" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece5" pickable="1">
+            <transformation>
+                <translate x="2" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece6" pickable="1">
+            <transformation>
+                <translate x="0" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece7" pickable="1">
+            <transformation>
+                <translate x="-2" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece8" pickable="1">
+            <transformation>
+                <translate x="-4" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece9" pickable="1">
+            <transformation>
+                <translate x="3" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece10" pickable="1">
+            <transformation>
+                <translate x="1" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece11" pickable="1">
+            <transformation>
+                <translate x="-1" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="whitePiece12" pickable="1">
+            <transformation>
+                <translate x="-3" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="whitePieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="piece" />
+            </children>
+        </component>
+
+        <component id="piece">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <scale x="0.18" y="0.18" z="0.18" />
+            </transformation>
+            <materials>
+                <material id="neutral" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="pieceSurface" />
+                <componentref id="demoBases" />
+            </children>
+        </component>
+
+        <component id="demoBases">
+            <transformation></transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="demoTop" />
+                <componentref id="demoBottom" />
+            </children>
+        </component>
+
+        <component id="demoTop">
+            <transformation>
+                <translate x="0" y="2" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="piecesFace" />
+            </children>
+        </component>
+
+        <component id="demoBottom">
+            <transformation>
+                <translate x="0" y="0" z="0" />
+                <rotate axis="x" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="piecesFace" />
+            </children>
+        </component>
+
+        <component id="pieceSurface">
+            <transformation></transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodTexture" length_s="1" length_t="1" />
+            <children>
+                <primitiveref id="halfPiece" />
+                <componentref id="rotatedPatch" />
+            </children>
+        </component>
+
+        <component id="rotatedPatch">
+            <transformation>
+                <rotate axis="y" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="halfPiece" />
+            </children>
+        </component>
+
+        <component id="timer">
+            <transformation>
+                <translate x="-8" y="1" z="0" />
+                <scale x="0.5" y="0.5" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="body" />
+                <componentref id="minutePlayer1" />
+                <componentref id="biggerSecondPlayer1" />
+                <componentref id="smallerSecondPlayer1" />
+                <componentref id="minutePlayer2" />
+                <componentref id="biggerSecondPlayer2" />
+                <componentref id="smallerSecondPlayer2" />
+                <componentref id="twoDotsPlayer1" />
+                <componentref id="twoDotsPlayer2" />
+            </children>
+        </component>
+
+        <component id="minutePlayer1">
+            <transformation>
+                <translate x="0" y="0" z="5" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber1" />
+            </children>
+        </component>
+
+        <component id="biggerSecondPlayer1">
+            <transformation>
+                <translate x="0" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber2" />
+            </children>
+        </component>
+
+        <component id="smallerSecondPlayer1">
+            <transformation>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber3" />
+            </children>
+        </component>
+
+        <component id="minutePlayer2">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber4" />
+            </children>
+        </component>
+
+        <component id="biggerSecondPlayer2">
+            <transformation>
+                <translate x="0" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber5" />
+            </children>
+        </component>
+
+        <component id="smallerSecondPlayer2">
+            <transformation>
+                <translate x="0" y="0" z="-4" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="displayNumber6" />
+            </children>
+        </component>
+
+        <component id="body">
+            <transformation>
+                <scale x="1" y="2" z="7" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodTexture" length_s="2" length_t="2" />
+            <children>
+                <componentref id="timer_face1" />
+                <componentref id="timer_face2" />
+                <componentref id="timer_face3" />
+                <componentref id="timer_face4" />
+                <componentref id="timer_face5" />
+                <componentref id="timer_face6" />
+                <componentref id="timer_face6" />
+            </children>
+        </component>
+
+        <component id="timer_face1">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="timer_face2">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+                <rotate axis="y" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="timer_face3">
+            <transformation>
+                <translate x="1" y="0" z="0" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="timer_face4">
+            <transformation>
+                <translate x="-1" y="0" z="0" />
+                <rotate axis="y" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="timer_face5">
+            <transformation>
+                <translate x="0" y="-1" z="0" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="timer_face6">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="displayNumber1">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="displayNumber2">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="displayNumber3">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="displayNumber4">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="displayNumber5">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="displayNumber6">
+            <transformation>
+                <scale x="1" y="1" z="0.45" />
+                <translate x="1.01" y="0" z="-1.1" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="timerDisplayOled" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="" scale_x="2" scale_y="3" />
+        </component>
+
+        <component id="twoDotsPlayer1">
+            <transformation>
+                <translate x="0" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="timerDotUp" />
+                <componentref id="timerDotDown" />
+            </children>
+        </component>
+
+        <component id="twoDotsPlayer2">
+            <transformation>
+                <translate x="0" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="blackPieceTexture" length_s="1" length_t="1" />
+            <children>
+                <componentref id="timerDotUp" />
+                <componentref id="timerDotDown" />
+            </children>
+        </component>
+
+        <component id="timerDotUp">
+            <transformation>
+                <translate x="1.01" y="0.5" z="0.5" />
+                <rotate axis="z" angle="-90" />
+                <scale x="0.1" y="0.1" z="0.1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="boardCirclePatch" />
+            </children>
+        </component>
+
+        <component id="timerDotDown">
+            <transformation>
+                <translate x="1.01" y="-0.5" z="0.5" />
+                <rotate axis="z" angle="-90" />
+                <scale x="0.1" y="0.1" z="0.1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="boardCirclePatch" />
+            </children>
+        </component>
+
+        <component id="supportBlockPlayer1">
+            <transformation>
+                <scale x="1" y="0.5" z="1.5" />
+                <translate x="7" y="1" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodTexture" length_s="2" length_t="2" />
+            <children>
+                <componentref id="supportBlockFace1" />
+                <componentref id="supportBlockFace2" />
+                <componentref id="supportBlockFace3" />
+                <componentref id="supportBlockFace4Black" />
+                <componentref id="supportBlockFace5" />
+                <componentref id="supportBlockFace6" />
+            </children>
+        </component>
+
+        <component id="supportBlockPlayer2">
+            <transformation>
+                <scale x="1" y="0.5" z="1.5" />
+                <translate x="7" y="1" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodTexture" length_s="2" length_t="2" />
+            <children>
+                <componentref id="supportBlockFace1" />
+                <componentref id="supportBlockFace2" />
+                <componentref id="supportBlockFace3" />
+                <componentref id="supportBlockFace4White" />
+                <componentref id="supportBlockFace5" />
+                <componentref id="supportBlockFace6" />
+            </children>
+        </component>
+
+        <component id="supportBlockFace1">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="supportBlockFace2">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+                <rotate axis="y" angle="180" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="supportBlockFace3">
+            <transformation>
+                <translate x="1" y="0" z="0" />
+                <rotate axis="y" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="supportBlockFace4Black">
+            <transformation>
+                <translate x="-1" y="0" z="0" />
+                <rotate axis="y" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="0" scale_x="0.8" scale_y="1.8" />
+        </component>
+
+        <component id="supportBlockFace4White">
+            <transformation>
+                <translate x="-1" y="0" z="0" />
+                <rotate axis="y" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+            <text string="0" scale_x="0.8" scale_y="1.8" />
+        </component>
+
+        <component id="supportBlockFace5">
+            <transformation>
+                <translate x="0" y="-1" z="0" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="supportBlockFace6">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+    </components>
+</sxs>
