@@ -195,6 +195,7 @@ export class GameController {
         this.gameOver = false;
 
         // Reset game view
+        this.clearViewAndSavedState();
         this.reset();
 
         // Hook pieces
@@ -211,6 +212,21 @@ export class GameController {
 
         // Flash welcome message
         this.uiController.flashToast("Game started! Good luck!");
+    }
+
+    clearViewAndSavedState() {
+        this.savedPieces.clear();
+        this.savedAnimations = {};
+        this.savedTempTextureIDs = {};
+        this.savedCapturedPieces = {};
+        this.savedStackState = null;
+
+        for (const [id, _] of this.pieces) {
+            const component = this.scene.graph.components[id];
+            component.animationID = null;
+            delete this.scene.graph.animations[component.animationID];
+            component.tempTextureID = null;
+        }
     }
 
     reset() {
