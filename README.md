@@ -16,7 +16,7 @@
 - Items described in tp1 [README](https://github.com/fernandorego/feup-sgi/blob/main/tp1/README.md)
 - Scene
   - The scene represents a comfortable living room with a little donut over the dinner table and a modern center table, a sofa to watch TV and several lamps to allow night entertainment. Two art paintings are present in the living room walls to give some life and colors to the scene.
-  - [Check out our scene here](https://paginas.fe.up.pt/~up201905951/sgi/tp1/)
+  - [Check out our scene here](https://fernandorego.github.io/feup-sgi/tp1/)
 
 ---
 
@@ -25,7 +25,7 @@
 - Items described in tp2 [README](https://github.com/fernandorego/feup-sgi/blob/main/tp2/README.md)
 - Scene
   - The scene is once again a comfortable living room with a little donut over the dinner table and a modern center table, a sofa to watch TV and several lamps to allow night entertainment. We added upon the first delivery with a flying airplane, a fireplace, a barrel and other objects that are animated and highlighted, as suggested.
-  - [Check out our scene here](https://paginas.fe.up.pt/~up201905951/sgi/tp2/)
+  - [Check out our scene here](https://fernandorego.github.io/feup-sgi/tp2/)
 
 ---
 
@@ -39,4 +39,4 @@
   - The first scene is the previous comfortable living room developed in TP1 and TP2 but with the game board, timers and auxiliar boards in the dinner table to play a nice game of checkers.
   - The second scene resembles a beach located somewhere in the world, in the end of an afternoon. A drink seats above a beach table so that players can hydrate themselves during the game. A beach towel and some sun umbrellas complete this dreamy scenario.
   - The third scene is a representation of a part of the universe with several planets in their orbits. In the middle of the scene there is an asteroid which has the game board, timers and auxiliar boards on top to play a nice game of checkers.
-  - [Check out our scene here](https://paginas.fe.up.pt/~up201905951/sgi/tp3/)
+  - [Check out our scene here](https://fernandorego.github.io/feup-sgi/tp3/)
