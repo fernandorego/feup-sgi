@@ -51,7 +51,7 @@ The TV-facing table, the donut and the glass on top of the TV-facing table are h
 
 Lastly, animations are intended to make the scene more lively. We are displaying a paper plane flying around the room, while also moving its "wings" and going up and down. An orange is falling from the dinner table, just like magic. The TV is moving towards the sofa, for a lively movie night. The fireplace is stretching, to give the impression that flames are burning. Chairs around the dinner table are moving around it, to give the impression that the family is having a buffet, having to move around the table to get their food.
 
-Check out our project [in this page](https://paginas.fe.up.pt/~up201905951/sgi/tp2/).
+Check out our project [here](https://fernandorego.github.io/feup-sgi/tp2/).
 
 Check out some screenshots [here](screenshots/).
 
